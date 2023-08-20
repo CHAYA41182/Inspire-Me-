@@ -1,0 +1,30 @@
+
+
+/* Apply the font to the relevant elements */
+body, h1, h5 {
+    font-family: 'Arimo', serif;
+}
+
+  
+body{
+    margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+    padding: 0px;
+}
+h1{
+    font-size: 3vw;
+    text-align: center;
+    font-weight: 600;
+}
+h5{
+    text-align: center;
+    font-size: 2vw;
+    font-family: 'Arimo', serif;
+    font-weight: 400;
+
+
+}
