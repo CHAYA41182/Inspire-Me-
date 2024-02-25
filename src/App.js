@@ -137,7 +137,8 @@ const App = () => {
   const textColor = getContrastColor(CenterColor);
 
   return (
-    <div style={{ backgroundImage: `url(${image})`, width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', 
+    width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <img ref={imgRef} style={{ display: 'none' }} 
             src={image} />
 
