@@ -76,6 +76,7 @@ const App = () => {
 
     }
   }, [imgRef.current]);
+
   const fetchData = async () => {
     try {
       const quotesURL = "https://api.api-ninjas.com/v1/quotes"
@@ -95,6 +96,7 @@ const App = () => {
 
   const fetchImage = async () => {
     const category = "nature";
+    if(image)
     try {
       const response = await Axios.get('https://api.api-ninjas.com/v1/randomimage', {
         params: {
@@ -118,6 +120,7 @@ const App = () => {
       console.log("fetchImage error:");
       console.error(error);
     }
+    
   };
 
 
@@ -130,14 +133,19 @@ const App = () => {
   if (quote === "" || image === "") {
     return <div>Loading...</div>;
   }
-  console.log(averageColor);
-  const textColor = getContrastColor(averageColor)
-  console.log(textColor);
+
+  let avgColor = { r: 0, g: 0, b: 0 };
+  if (averageColor)
+    avgColor = averageColor;
+  console.log(avgColor);
+   const CenterColor = `rgb(${avgColor.r},${avgColor.g},${avgColor.b})`;
+  const textColor = getContrastColor(CenterColor);
 
   return (
-    <div style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
+    <div style={{ backgroundImage: `url(${image})`, 
+    backgroundSize: 'cover',
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
     width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <img ref={imgRef} style={{ display: 'none' }} 
             src={image} />
