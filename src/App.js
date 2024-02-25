@@ -76,6 +76,7 @@ const App = () => {
       }
     }
   }, [image]);
+
   const fetchData = async () => {
     try {
       const quotesURL = "https://api.api-ninjas.com/v1/quotes"
@@ -95,6 +96,7 @@ const App = () => {
 
   const fetchImage = async () => {
     const category = "nature";
+    if(image)
     try {
       const response = await Axios.get('https://api.api-ninjas.com/v1/randomimage', {
         params: {
@@ -118,6 +120,7 @@ const App = () => {
       console.log("fetchImage error:");
       console.error(error);
     }
+    
   };
 
 
@@ -131,9 +134,10 @@ const App = () => {
     return <div>Loading...</div>;
   }
   let avgColor = { r: 0, g: 0, b: 0 };
-  if (imgRef.current) {
-    avgColor = getAverageRGB(imgRef.current);
-  }  const CenterColor = `rgb(${avgColor.r},${avgColor.g},${avgColor.b})`;
+  if (averageColor)
+    avgColor = averageColor;
+  console.log(avgColor);
+   const CenterColor = `rgb(${avgColor.r},${avgColor.g},${avgColor.b})`;
   const textColor = getContrastColor(CenterColor);
 
   return (
