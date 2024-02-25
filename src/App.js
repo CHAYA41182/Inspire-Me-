@@ -69,13 +69,13 @@ const App = () => {
     if (imgEl) {
       imgEl.onload = function () {
         setAverageColor(getAverageRGB(imgEl));
+
       }
+      console.log(averageColor)
   
-      if (image) {
-        imgEl.src = image;
-      }
+
     }
-  }, [image]);
+  }, [imgRef.current]);
   const fetchData = async () => {
     try {
       const quotesURL = "https://api.api-ninjas.com/v1/quotes"
@@ -130,14 +130,15 @@ const App = () => {
   if (quote === "" || image === "") {
     return <div>Loading...</div>;
   }
-  let avgColor = { r: 0, g: 0, b: 0 };
-  if (imgRef.current) {
-    avgColor = getAverageRGB(imgRef.current);
-  }  const CenterColor = `rgb(${avgColor.r},${avgColor.g},${avgColor.b})`;
-  const textColor = getContrastColor(CenterColor);
+  console.log(averageColor);
+  const textColor = getContrastColor(averageColor)
+  console.log(textColor);
 
   return (
-    <div style={{ backgroundImage: `url(${image})`, width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center',
+    width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <img ref={imgRef} style={{ display: 'none' }} 
             src={image} />
 
